@@ -6,7 +6,8 @@ let $timeHeader = document.querySelector('#time-header');
 let $resultHeader = document.querySelector('#result-header');
 let $gameTime = document.querySelector('#game-time');
 
-let colors = ['red', 'blue', 'green', 'yellow', 'pink'];
+let colors = ['red', 'blue', 'green', 'yellow', 'pink', '#fdbb2d', '#22c1c3', '#2dfd35', '#902dfd',
+ '#fd2dcd', '#ff98a4', '#b198ff', '#ffde98', '#bdff98', '#1b7909', '#790977'];
 
 let score = 0;
 let isGameStarted = false;
@@ -77,10 +78,11 @@ function renderBox() {
     let gameSize = $game.getBoundingClientRect();
     let maxTop = gameSize.height - boxSize;
     let maxLeft = gameSize.width - boxSize;
+    let randomColor = getRandom(0, colors.length);
 
     box.style.height = box.style.width = boxSize + 'px';
     box.style.position = 'absolute';
-    box.style.backgroundColor = colors[getRandom(0, colors.length)];
+    box.style.backgroundColor = colors[randomColor];
     box.style.top = getRandom(0, maxTop) + 'px';
     box.style.left = getRandom(0, maxLeft) + 'px';
     box.style.cursor = 'pointer';
