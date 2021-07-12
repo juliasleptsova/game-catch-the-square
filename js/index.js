@@ -4,16 +4,19 @@ let $time = document.querySelector('#time');
 let $result = document.querySelector('#result');
 let $timeHeader = document.querySelector('#time-header');
 let $resultHeader = document.querySelector('#result-header');
+let $gameTime = document.querySelector('#game-time');
 
 let score = 0;
 let isGameStarted = false;
 
 $start.addEventListener('click', startGame);
 $game.addEventListener('click', handleBoxClick);
+$gameTime.addEventListener('input', setGameTime);
 
 function startGame() {
     score = 0;
     setGameTime();
+    $gameTime.setAttribute('disabled', true);
     $timeHeader.classList.remove('hide');
     $resultHeader.classList.add('hide');
     isGameStarted = true;
@@ -39,18 +42,20 @@ function setGameScore() {
 }
 
 function setGameTime(){
-    let time = 5;
+    let time = +$gameTime.value;
     $time.textContent = time.toFixed(1);
 }
 
 function endGame() {
     isGameStarted = false;
     setGameScore();
+    $gameTime.removeAttribute('disabled');
     $start.classList.remove('hide');
     $game.innerHTML = '';
     $game.style.backgroundColor = '#ccc';
     $timeHeader.classList.add('hide');
     $resultHeader.classList.remove('hide');
+
 
 }
 
